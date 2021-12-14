@@ -21,15 +21,18 @@ def fixed_step_chunker(
       of the for [it_1, it_2...], given a chk_size, chk_step, and a start_at and a stop_at.
       The start_at, stop_at act like slices indices for a list: start_at is included and stop_at is excluded
 
-      :param it: iterator of elements of any type
-      :param chk_size: length of the chunks
-      :param chk_step: step between chunks
-      :param start_at: index of the first term of the iterator at which we begin building the chunks (inclusive)
-      :param stop_at: index of the last term from the iterator included in the chunks
-      :param return_tail: if set to false, only the chunks with max element with index less than stop_at are yielded
-      if set to true, any chunks with minimum index value no more than stop_at are returned but they contain
-      term with index no more than stop_at
-      :return: an iterator of the chunks
+      Args:
+          it: iterator of elements of any type
+          chk_size: length of the chunks
+          chk_step: step between chunks
+          start_at: index of the first term of the iterator at which we begin building the chunks (inclusive)
+          stop_at: index of the last term from the iterator included in the chunks
+          return_tail: if set to false, only the chunks with max element with index less than stop_at are yielded
+              if set to true, any chunks with minimum index value no more than stop_at are returned but they contain
+              term with index no more than stop_at
+      
+      Returns: 
+          an iterator of the chunks
 
       1) If stop_at is not None and return_tail is False:
          will return all full chunks with maximum element index less than stop_at
@@ -48,7 +51,7 @@ def fixed_step_chunker(
          will return all full chunks with maximum element index less or equal to the last
          element of it plus cut off chunks whose maximum term index is the last term of it
 
-        Examples:
+      Examples:
 
         >>> list(fixed_step_chunker([1,2,3,4,5,6,7], chk_size=3, chk_step=2))
         [[1, 2, 3], [3, 4, 5], [5, 6, 7]]
@@ -141,7 +144,8 @@ def fixed_step_chunker(
         >>> A  # and that thing is:
         [[2, 3, 4]]
 
-        # testing chk_step > chk_size with return_tail=FALSE, stop and start_at NOT PRESENT
+        Testing chk_step > chk_size with return_tail=FALSE, stop and start_at NOT PRESENT
+        
         >>> f = lambda it: fixed_step_chunker(it, chk_size=3, chk_step=4, start_at=None, stop_at=None, return_tail=False)
         >>> it = list(range(1, 17, 1))
         >>> A = list(f(it)); B = list(f(iter(it)));  # trying the function on it (a list) and iter(it) (and iterator)

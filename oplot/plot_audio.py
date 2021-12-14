@@ -18,28 +18,34 @@ def plot_lines(
 ):
     """
     Function to draw vertical or horizontal lines on an ax
-    :param ax: the matplolib axis on which to draw
-    :param lines_loc: the location of the lines
-    :param labels: a list of floats, the labels of the lines, optionsl
-    :param colors: a list of strings, the colors of the lines
-    :param line_widths: a list of floats, the widths of the lines
-    :param def_col: default color if no list of colors if provided
-    :param line_type: 'vert' or 'horiz
-    :return:
 
-    --------------EXAMPLE OF USAGE---------------
+    Args:
 
-    # an initial plot
-    fig, ax = plt.subplots()
-    ax.plot([1, 2, 3])
+        ax: the matplolib axis on which to draw
+        lines_loc: the location of the lines
+        labels: a list of floats, the labels of the lines, optionsl
+        colors: a list of strings, the colors of the lines
+        line_widths: a list of floats, the widths of the lines
+        def_col: default color if no list of colors if provided
+        line_type: 'vert' or 'horiz
 
-    # adding vertical lines to the plot
-    plot_vlines(ax,
-                lines_loc=[1,2],
-                line_type='horiz',
-                colors=['b', 'r'],
-                line_widths=[0.5, 2],
-                labels=['thin blue', 'wide red'])
+    Examples:
+        
+
+        An initial plot
+
+        >>> fig, ax = plt.subplots()
+        ...     ax.plot([1, 2, 3])
+
+        Adding vertical lines to the plot
+
+        >>> plot_vlines(ax,
+        ...     lines_loc=[1,2],
+        ...     line_type='horiz',
+        ...     colors=['b', 'r'],
+        ...     line_widths=[0.5, 2],
+        ...     labels=['thin blue', 'wide red'])
+
     """
 
     if line_type == 'vert':
@@ -61,13 +67,12 @@ def plot_lines(
 
 def plot_spectro(ax, wf, chk_size=2048, noverlap=0, sr=44100):
     """
-
-    :param ax:
-    :param wf:
-    :param chk_size:
-    :param noverlap:
-    :param sr:
-    :return:
+    Args:
+        ax
+        wf
+        chk_size
+        noverlap
+        sr
     """
     ax.specgram(x=wf, NFFT=chk_size, noverlap=noverlap, Fs=sr)
 
@@ -79,7 +84,6 @@ def plot_wf(ax, wf, wf_line_width=0.8, wf_color='b'):
     :param wf:
     :param wf_line_width:
     :param wf_color:
-    :return:
     """
     ax.plot(wf, linewidth=wf_line_width, c=wf_color)
 

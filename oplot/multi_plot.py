@@ -33,7 +33,8 @@ def multi_row_plot(
     """
     Quickly plotting multiple rows of data.
 
-    :param data_list: The list of datas to plot. For each "row_data" of data_list, a row will be created and plot_func
+    :param data_list: 
+        The list of datas to plot. For each "row_data" of data_list, a row will be created and plot_func
         will be called, using that item as input. If row_data is:
             * a dict, plot_func(**dict(plot_func_kwargs, **row_data)) will be called to populate that row
             * a tuple, plot_func(*row_data, **plot_func_kwargs) will be called to populate that row
@@ -112,9 +113,11 @@ def ax_func_to_plot(
     """
     Each function in list_func_per_ax takes an ax as input and draw something on it
 
-    outer_axis_labels_only: if set to true, only the axis labels on the left column and bottom row will show
-    x_labels: the label on all x-axis
-    y_labels: the label on all the y-axis
+    Args:
+
+        outer_axis_labels_only: if set to true, only the axis labels on the left column and bottom row will show
+        x_labels: the label on all x-axis
+        y_labels: the label on all the y-axis
     """
     n_rows = int(np.ceil(len(list_func_per_ax) / n_per_row))
     fig, axes = plt.subplots(

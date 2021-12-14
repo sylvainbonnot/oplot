@@ -3,19 +3,19 @@ Function to reduce and plot data in 2 or 3 dimensions
 
 Example of usage:
 
-from sklearn.datasets import make_blobs
+>>> from sklearn.datasets import make_blobs
 
-X, y = make_blobs(n_samples=300, n_features=4, centers=3, cluster_std=1.0)
+>>> X, y = make_blobs(n_samples=300, n_features=4, centers=3, cluster_std=1.0)
 
-y_conf = []
-for i in range(len(y)):
-    if y[i] == 0 or y[i] == 2:
-        y_conf.append(0)
-    else:
-        y_conf.append(1)
-y_conf = np.array(y_conf)
+>>> y_conf = []
+>>> for i in range(len(y)):
+...    if y[i] == 0 or y[i] == 2:
+...        y_conf.append(0)
+...    else:
+...        y_conf.append(1)
+>>> y_conf = np.array(y_conf)
 
-scatter_and_color_according_to_y(X, y_conf, col='rainbow', dim_reduct='LDA', projection='3d')
+>>> scatter_and_color_according_to_y(X, y_conf, col='rainbow', dim_reduct='LDA', projection='3d')
 
 
 """

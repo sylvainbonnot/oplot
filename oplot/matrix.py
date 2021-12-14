@@ -313,6 +313,7 @@ def hierarchical_cluster_sorted_heatmap(
     A function to plot a square df (i.e. same indices and columns) that contains distances/similarities as it's values,
     as a heatmap whose indices and columns are sorted according to a hierarchical clustering
     (based on the distances listed in the df).
+    
     :param df: The distance (or similarity) square matrix
     :param only_return_sorted_df: Default False. Set to True to return the df instead of the heatmap
     :param seaborn_heatmap_kwargs: the arguments to use in seaborn.heatmap (default is dict(cbar=False))

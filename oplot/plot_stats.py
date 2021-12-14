@@ -14,6 +14,23 @@ import warnings
 from oplot.util import fixed_step_chunker
 
 
+
+def plot_func_sphinx(arg1: int, arg2: str) -> bool:
+    """Summary line.
+
+    Extended description of function.
+
+    Args:
+        arg1: Description of arg1
+        arg2: Description of arg2
+
+    Returns:
+        Description of return value
+
+    """
+    return True
+
+
 def plot_freqs_stats(X, upper_frequency=22050, n_bins=1025, normalized=True):
     """
     X is intended to be the list/array of spectra, the function plots the mean, max and min of each frequency.
@@ -929,6 +946,50 @@ def plot_outlier_metric_curve(
         return area_under_points(list(zip(x, y))[1:])
 
 
+
+
+def plot_outlier_metric_curve_sphinx_napoleon(
+    truth,
+    scores,
+    pair_metrics={'x': 'TPR', 'y': 'PPV'},
+    plot_curve=True,
+    curve_legend_name=None,
+    title=None,
+    plot_table_points_on_curve=False,
+    plot_chance_line=True,
+    plot_table=False,
+    n_points_for_table=10,
+    axis_name_dict=None,
+    saving_root=None,
+    outlier_proportion=None,
+    wiggle=False,
+    table_dpi=300,
+    base_statistics_dict=base_statistics_dict,
+    synonyms=synonyms,
+    return_rauc=True,
+    add_point_left=None,
+    add_point_right=None,
+):
+    """
+    Plots one outlier scores metric against another one. The metrics name can be any names in the base_statistics_dict
+    or the synonyms dict. The chance line/curve is automatically computed and displayed along with a table
+    of equally spaced point on the curve.
+
+    
+    Args:
+        truth: an array of 0/1, the ground truth: 0 for normal, 1 for outlier
+        scores: the scores as predicted by our model. Higher scores is expected to correspond to outliers.
+        temporary (bool): Whether or not to delete the file when the File
+           instance is destructed
+
+    
+    """
+
+    # make a saving folder if specified
+    
+    pass
+
+
 def area_under_points(points):
     """
     Given a list of pair corresponding to the x and y coordinates of the points, find the
@@ -953,6 +1014,28 @@ def area_under_points(points):
         left_point = right_point
 
     return total_area
+
+def area_under_points_sphinx(points):
+    """
+    Given a list of pair corresponding to the x and y coordinates of the points, find the
+    area under the curve of the (simplest) piecewise linear function passing by all the points
+
+    .. code-block:: python
+   
+        def myfunc(x):
+           return 2*x
+    
+
+    >>> area_under_points([(0, 1), (1, 1)])
+    1.0
+    >>> area_under_points([(0, 1), (1, 2)])
+    1.5
+    >>> area_under_points([(0, 1), (1, 2), (2, 2)])
+    3.5
+
+    """
+    # sort the points according to their x coordinates
+    pass
 
 
 def smooth_scores(scores, window_size=2, window_step=None, smooth_func=np.mean):
@@ -979,6 +1062,37 @@ def smooth_scores(scores, window_size=2, window_step=None, smooth_func=np.mean):
 
     win_gen = fixed_step_chunker(scores, chk_size=window_size, chk_step=window_step)
     return map(smooth_func, win_gen)
+
+def smooth_scores_sphinx_napoleon(scores, window_size=2, window_step=None, smooth_func=np.mean):
+    """
+    Smooth an iterable of score by applying smooth_funct to each window of size window_size.
+    If scores is smaller than window_size, an empty list is returned.
+
+    Args:
+        scores: list, the scores to smooth
+        window_size: int, the size of the window
+        smooth_funct: function, the function applied to the windows
+
+    
+
+    Returns:
+        a new list of scores
+
+
+    >>> list(smooth_scores([1], window_size=2))
+    []
+    >>> list(smooth_scores([1, 2], window_size=2))
+    [1.5]
+    >>> list(smooth_scores([1, 2, 3], window_size=2, window_step=1, smooth_func=np.max))
+    [2, 3]
+
+    """
+    if window_step is None:
+        window_step = window_size
+
+    win_gen = fixed_step_chunker(scores, chk_size=window_size, chk_step=window_step)
+    return map(smooth_func, win_gen)
+
 
 
 def split_on_consecutive(arr_to_split, arr_for_consec):

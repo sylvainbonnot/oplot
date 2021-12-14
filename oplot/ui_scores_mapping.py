@@ -66,29 +66,33 @@ def make_ui_score_mapping(
     Plot a sigmoid function to map outlier scores to (by default) the range (0, 10)
     The function is not only continuous but also smooth and the radius of the corners are controlled by the floats
     top_base and bottom_base
-    :param min_lin_score: float, the minimum scores which is map with a linear function
-    :param max_lin_score: float, the maximum scores which is map with a linear function
-    :param top_base: float, the base of the exponential function on top of the linear part
-    :param bottom_base:  float, the base of the exponential function on the bottom of the linear part
-    :param max_score: float, the upper bound of the function
-    :param reverse: boolean, whether to mirror the function along its center
-    :return: a mapping, sigmoid like
 
+    Args:
 
-    ------------------------ Example of use: ---------------------------
+        min_lin_score: float, the minimum scores which is map with a linear function
+        max_lin_score: float, the maximum scores which is map with a linear function
+        top_base: float, the base of the exponential function on top of the linear part
+        bottom_base:  float, the base of the exponential function on the bottom of the linear part
+        max_score: float, the upper bound of the function
+        reverse: boolean, whether to mirror the function along its center
+    
+    Returns:
+        a mapping, sigmoid like
 
-    from oplot.ui_scores_mapping import make_ui_score_mapping
-    import numpy as np
-    import matplotlib,pyplot as plt
+    Examples:
 
-    sigmoid_map = make_ui_score_mapping(min_lin_score=1,
-                                        max_lin_score=9,
-                                        top_base=2,
-                                        bottom_base=2,
-                                        max_score=10)
+    >>> from oplot.ui_scores_mapping import make_ui_score_mapping
+    >>> import numpy as np
+    >>> import matplotlib,pyplot as plt
 
-    x = np.linspace(-5, 15, 100)
-    plt.plot(x, [sigmoid_map(i) for i in x])
+    >>> sigmoid_map = make_ui_score_mapping(min_lin_score=1,
+    ...                                max_lin_score=9,
+    ...                                 top_base=2,
+    ...                                 bottom_base=2,
+    ...                                 max_score=10)
+
+    >>> x = np.linspace(-5, 15, 100)
+    >>> plt.plot(x, [sigmoid_map(i) for i in x])
 
     """
 
